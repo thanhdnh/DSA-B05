@@ -1,8 +1,17 @@
 ﻿
+using System.Collections;
+
 public class Program
 {
     public static void Main(string[] args)
     {
+        StudentDictionary studs = new StudentDictionary();
+        studs.Add("SV001", new Student("SV001", 20, 7.5f));
+        studs.Add("SV002", new Student("SV002", 21, 8.3f));
+        IDictionaryEnumerator e = studs.GetEnumerator();
+        while(e.MoveNext())
+            Console.WriteLine($"{e.Key} => {e.Value}");
+        /*
         int[] arr = new int[1000];
         Randomize(arr);
         int time = 0;
@@ -38,6 +47,7 @@ public class Program
             time += timing.Result().Milliseconds;
         }
         Console.WriteLine($"Quick Sort: {time / 100f} ms");
+        */
     }
 
     static void QuickSort(int[] arr, int low, int high)
