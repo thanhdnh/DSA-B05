@@ -12,10 +12,11 @@ public class Program
         while(e.MoveNext())
             Console.WriteLine($"{e.Key} => {e.Value}");
         /*
-        int[] arr = new int[1000];
+        int total = 100;
+        int[] arr = new int[total];
         Randomize(arr);
         int time = 0;
-        int[] cpy = new int[1000];
+        int[] cpy = new int[total];
 
         Timing timing = new Timing();
         arr.CopyTo(cpy, 0);
@@ -28,7 +29,7 @@ public class Program
         }
         Console.WriteLine($"Selection Sort: {time / 100f} ms");
         time = 0;
-        arr.CopyTo(cpy, 0);
+        cpy.CopyTo(arr, 0);
         for (int i = 0; i < 100; i++)
         {
             timing.startTime();
@@ -38,7 +39,7 @@ public class Program
         }
         Console.WriteLine($"Bubble Sort: {time / 100f} ms");
         time = 0;
-        arr.CopyTo(cpy, 0);
+        cpy.CopyTo(arr, 0);
         for (int i = 0; i < 100; i++)
         {
             timing.startTime();
@@ -52,13 +53,14 @@ public class Program
 
     static void QuickSort(int[] arr, int low, int high)
     {
-        int p = 0;
         if (low < high)
-            p = Partition(arr, low, high);
-        if (p > 1)
-            QuickSort(arr, low, p - 1);
-        if (p + 1 < high)
-            QuickSort(arr, p + 1, high);
+        {
+            int p = Partition(arr, low, high);
+            if (p > 1)
+                QuickSort(arr, low, p - 1);
+            if (p + 1 < high)
+                QuickSort(arr, p + 1, high);
+        }
     }
     static int Partition(int[] arr, int low, int high)
     {
@@ -68,7 +70,7 @@ public class Program
             if (arr[i] < pivot)
             {
                 Swap(ref arr[i], ref arr[j]);
-                i++;
+                j++;
             }
         Swap(ref arr[j], ref arr[high]);
         return j;
